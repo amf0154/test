@@ -13,7 +13,7 @@
   <tbody>
   <?php foreach ($news as $article): ?>
     <tr>
-        <td><?php echo $article['title']; ?></td> 
+        <td><a href="/view/<?php echo $article['id']; ?>"><?php echo $article['title']; ?></a></td> 
         <td><?php echo $article['text']; ?></td> 
         <td><?php echo $article['date']; ?></td> 
         <td><a href="/edit/<?php echo $article['id']; ?>">edit</a></td>        

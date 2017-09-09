@@ -1,40 +1,32 @@
 <?php
-class News{
+class Comments{
     
-    const SHOW_BY_DEFAULT = 5;
-    public static function getNewsList($page = 1): array{
-        $limit = self::SHOW_BY_DEFAULT;
-        $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
+    public static function getCommentsList($id): array{
         $connect = Database::getInstance(); 
         $db = $connect->getConnection();
-        $sql = 'SELECT * FROM news ORDER BY id DESC LIMIT :limit OFFSET :offset';   
+        $sql = 'SELECT * FROM comments WHERE id_news=:id_news ORDER BY id DESC';   
         $result = $db->prepare($sql);
-        $result->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $result->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $result->bindParam(':id_news', $id, PDO::PARAM_INT);
         $result->execute();
         $i = 0; 
-        $article = array();
+        $comment = array();
         while ($row = $result->fetch()) {
-            $article[$i]['id'] = $row['id'];
-            $article[$i]['title'] = $row['title'];
-            $article[$i]['date'] = $row['date'];
-            $article[$i]['text'] = $row['text'];
+            $comment[$i]['id'] = $row['id'];
+            $comment[$i]['date'] = $row['date'];
+            $comment[$i]['text'] = $row['text'];
             $i++;
         }
-        return $article;
+        return $comment;
     }
     
-    public static function addNews($options): int{
+    public static function addComment($options): int{
         $connect = Database::getInstance();
         $db = $connect->getConnection();
-        $sql = 'INSERT INTO news (title,text) VALUES (:title,:text)';
+        $sql = 'INSERT INTO comments (id_news,text) VALUES (:id_news,:text)';
         $result = $db->prepare($sql); 
-        $result->bindParam(':title', $options['title'], PDO::PARAM_STR);
-        $result->bindParam(':text', $options['text'], PDO::PARAM_STR);
-        if ($result->execute()) {
-            return $db->lastInsertId();
-        }
-        return 0;
+        $result->bindParam(':id_news', $options['id_post'], PDO::PARAM_INT);
+        $result->bindParam(':text', $options['comment'], PDO::PARAM_STR);
+        $result->execute();
     }
     
     public static function getTotalNews(): int{
@@ -57,4 +49,3 @@ class News{
         return $result->fetch();
     }    
 }
-

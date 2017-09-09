@@ -5,7 +5,7 @@ function ajax_post(){
     // Create our XMLHttpRequest object
     var hr = new XMLHttpRequest();
     // Create some variables we need to send to our PHP file
-    var url = "/add";
+    var url = "/addcom";
     var fn = document.getElementById("title").value;
     var ln = document.getElementById("text").value;
     var vars = "title="+fn+"&text="+ln;
@@ -42,7 +42,7 @@ function autoValidate() {
 <div class='add' style='padding-left: 15px;'>
 Title: <input id="title" name="title" size="40" type="text">  <br><br>
 Text: <textarea name="text" id="text" cols="40" rows="3"></textarea> <br><br>
-<input name="myBtn" type="submit" value="Submit Data" onclick="ajax_post();"> <br><br>
+<input name="myBtn" type="submit" value="Add article" onclick="ajax_post();"> <br><br>
 <div id="status"></div>
 <div id="status"></div>
 </body>
