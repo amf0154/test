@@ -1,5 +1,5 @@
  <?php if ($add): ?>
-    <p><b>&nbsp&nbsp&nbspNews has added! <a href="/add">Add one more?</a></b></p>
+    <p><b>&nbsp&nbsp&nbspNews has just added! <a href="/add">Add one more?</a></b></p>
     <?php else: ?>
         <?php if (isset($errors) && is_array($errors)): ?>
             <ul>

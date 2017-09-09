@@ -1,8 +1,28 @@
-<?php
-echo "SiteController/index";
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<?php include ROOT . '/views/layouts/header.php'; ?>
+    <div class="container">
+  <center>
+  <table class="table">
+        <thead>
+          <tr>
+            <th width="200">Title</th>
+            <th width="600">Text</th>
+            <th width="150">Date</th>
+            <th width="50">Edit</th>
+          </tr>
+        </thead>
+  <tbody>
+  <?php foreach ($news as $article): ?>
+    <tr>
+        <td><?php echo $article['title']; ?></td> 
+        <td><?php echo $article['text']; ?></td> 
+        <td><?php echo $article['date']; ?></td> 
+        <td><a href="/edit/<?php echo $article['id']; ?>">edit</a></td>        
+    </tr>
+ <?php endforeach; ?>                   
+   </tbody>
+   </table>
+      </center>
+</div>
 
+<center><?php echo ($pagination->amount()==1)? '': $pagination->get(); ?></center>
+<?php include ROOT . '/views/layouts/footer.php'; ?>
