@@ -4,7 +4,7 @@ return array(
     'view/([0-9]+)' => 'site/view/$1',
     'page/([0-9]+)' => 'site/index/$1',
     'update/([0-9]+)' => 'tack/update/$1',
-    'add' => 'site/add', 
+    'add' => 'site/add',
     'index.php' => 'site/index',
     '' => 'site/index',
 );

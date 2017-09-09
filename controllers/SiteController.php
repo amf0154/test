@@ -11,7 +11,7 @@ class SiteController {
     
     public function actionAdd(){
         $add = false;
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['title']) && isset($_POST['text'])) {
             $options['title'] = $_POST['title'];
             $options['text'] = $_POST['text'];
             $errors = false;

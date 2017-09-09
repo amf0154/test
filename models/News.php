@@ -1,7 +1,7 @@
 <?php
 class News{
     
-    const SHOW_BY_DEFAULT = 3;
+    const SHOW_BY_DEFAULT = 5;
     public static function getNewsList($page = 1): array{
         $limit = self::SHOW_BY_DEFAULT;
         $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
