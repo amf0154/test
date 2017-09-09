@@ -1,5 +1,7 @@
+<?php include ROOT . '/views/layouts/header.php'; ?>
 <script>
 function ajax_post(){
+    if(autoValidate()){
     // Create our XMLHttpRequest object
     var hr = new XMLHttpRequest();
     // Create some variables we need to send to our PHP file
@@ -13,24 +15,28 @@ function ajax_post(){
     // Access the onreadystatechange event for the XMLHttpRequest object
     hr.onreadystatechange = function() {
 	    if(hr.readyState == 4 && hr.status == 200) {
-			document.getElementById("status").innerHTML = 'News has been added successfully!';
+		document.getElementById("status").innerHTML = '<b>News has been added successfully!</b>';
 	    }
     }
     // Send the data to PHP now... and wait for response to update the status div
     hr.send(vars); // Actually execute the request
     document.getElementById("status").innerHTML = "Posting articles...";
+    } // end if for validation
 }
-</script> 
-<?php if ($add): ?>
-    <p><b>&nbsp&nbsp&nbspNews has just added! <a href="/add">Add one more?</a></b></p>
-    <?php else: ?>
-        <?php if (isset($errors) && is_array($errors)): ?>
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li> - <?php echo $error; ?></li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>                   
+function autoValidate() {  
+    var title = document.getElementById("title").value;;
+    var text = document.getElementById("text").value;;
+    if (title === "") {
+        alert("You didn't input title!");
+        return false;
+    }
+    if (text === "") {
+        alert("You didn't input text!");
+        return false;
+    } 
+    return true;
+       } // end validate function
+</script>                   
     <body>
                    
 <div class='add' style='padding-left: 15px;'>
@@ -41,6 +47,5 @@ Text: <textarea name="text" id="text" cols="40" rows="3"></textarea> <br><br>
 <div id="status"></div>
 </body>
 </div>
-               
-<?php endif; ?>
+<?php include ROOT . '/views/layouts/footer.php'; ?>
 
