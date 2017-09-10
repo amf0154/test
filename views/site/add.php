@@ -1,11 +1,11 @@
 <?php include ROOT . '/views/layouts/header.php'; ?>
 <script>
-function ajax_post(){
+function add_post(){
     if(autoValidate()){
     // Create our XMLHttpRequest object
     var hr = new XMLHttpRequest();
     // Create some variables we need to send to our PHP file
-    var url = "/addcom";
+    var url = "/add";
     var fn = document.getElementById("title").value;
     var ln = document.getElementById("text").value;
     var vars = "title="+fn+"&text="+ln;
@@ -15,7 +15,7 @@ function ajax_post(){
     // Access the onreadystatechange event for the XMLHttpRequest object
     hr.onreadystatechange = function() {
 	    if(hr.readyState == 4 && hr.status == 200) {
-		document.getElementById("status").innerHTML = '<b>News has been added successfully!</b>';
+		document.getElementById("status").innerHTML = '<div class="alert alert-info" role="alert">News has been added successfully!</div>';
 	    }
     }
     // Send the data to PHP now... and wait for response to update the status div
@@ -24,13 +24,13 @@ function ajax_post(){
     } // end if for validation
 }
 function autoValidate() {  
-    var title = document.getElementById("title").value;;
-    var text = document.getElementById("text").value;;
-    if (title === "") {
+    var title = document.getElementById("title").value;
+    var text = document.getElementById("text").value;
+    if (title.trim() === "") {
         alert("You didn't input title!");
         return false;
     }
-    if (text === "") {
+    if (text.trim() === "") {
         alert("You didn't input text!");
         return false;
     } 
@@ -42,7 +42,7 @@ function autoValidate() {
 <div class='add' style='padding-left: 15px;'>
 Title: <input id="title" name="title" size="40" type="text">  <br><br>
 Text: <textarea name="text" id="text" cols="40" rows="3"></textarea> <br><br>
-<input name="myBtn" type="submit" value="Add article" onclick="ajax_post();"> <br><br>
+<input name="myBtn" type="submit" value="Add article" onclick="add_post();"> <br><br>
 <div id="status"></div>
 <div id="status"></div>
 </body>

@@ -19,7 +19,7 @@ class Comments{
         return $comment;
     }
     
-    public static function addComment($options): int{
+    public static function addComment($options){
         $connect = Database::getInstance();
         $db = $connect->getConnection();
         $sql = 'INSERT INTO comments (id_news,text) VALUES (:id_news,:text)';

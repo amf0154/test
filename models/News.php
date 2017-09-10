@@ -55,6 +55,17 @@ class News{
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
         return $result->fetch();
+    }
+
+    public static function editNewsById($id, $options){
+        $connect = Database::getInstance();
+        $db = $connect->getConnection();
+        $sql = "UPDATE news SET title = :title, text = :text WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':title', $options['title'], PDO::PARAM_STR);
+        $result->bindParam(':text', $options['text'], PDO::PARAM_STR);
+        $result->execute();
     }    
 }
 
