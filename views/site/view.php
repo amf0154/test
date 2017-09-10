@@ -65,7 +65,7 @@ function autoValidate() {
 
       <div class="panel panel-primary"> 
     <div class="panel-heading"> 
-        <h3 class="panel-title">Comment <?php echo $comment['id']. " added ".$comment['date']; ?></h3> </div> 
+        <h3 class="panel-title">Comment #<?php echo $comment['id']. " added ".$comment['date']; ?></h3> </div> 
         <div class="panel-body"> <?php echo $comment['text']; ?> </div> </div>
          <?php endforeach; ?>  
   </ol>
