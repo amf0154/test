@@ -1,7 +1,7 @@
 <?php
-function __autoload($class_name)
+function __autoload($class_name) // function for autoload files
 {
-    $array_paths = array(
+    $array_paths = array( // array with including directories 
         '/models/',
         '/components/',
         '/controllers/',

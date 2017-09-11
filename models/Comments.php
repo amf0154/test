@@ -1,6 +1,5 @@
 <?php
-class Comments{
-    
+class Comments{    
     public static function getCommentsList($id): array{
         $connect = Database::getInstance(); 
         $db = $connect->getConnection();
